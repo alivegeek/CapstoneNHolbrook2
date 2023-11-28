@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:CapstoneNHolbrook.Views"
+             x:Class="CapstoneNHolbrook.Views.EditAppointment">
+
+    <ContentPage.Content>
+        <StackLayout Padding="10">
+            <!-- Dropdown for selecting the client -->
+           <Picker Title="Select Client"
+                   ItemsSource="{Binding Clients}"
+                   ItemDisplayBinding="{Binding FullName}"
+                   SelectedItem="{Binding SelectedClient}" />
+
+            <!-- Entry fields for the appointment details -->
+            <DatePicker Date="{Binding AppointmentDate}" 
+                        Format="dddd, MMMM d, yyyy" />
+
+            <TimePicker Time="{Binding StartTime}" />
+            <TimePicker Time="{Binding EndTime}" />
+            <Entry Placeholder="Type of Service" 
+                   Text="{Binding TypeOfService}" />
+
+            <!-- Entry field for the notes -->
+            <Entry Placeholder="Notes" 
+                   Text="{Binding Notes}" />
+
+            <!-- Button to update the appointment -->
+            <Button Text="Update Appointment" 
+                    Command="{Binding UpdateAppointmentCommand}" />
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

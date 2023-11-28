@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="CapstoneNHolbrook.Views.AddColorCardPage"
+             Title="Add Color Card">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <Image Source="Header.png"
+               Aspect="AspectFit"
+               Grid.Row="0"
+               VerticalOptions="Start"/>
+
+        <!-- Input boxes -->
+        <Grid Grid.Row="1" Margin="20,30,25,0" BackgroundColor="Transparent">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            
+            <Entry Placeholder="Previous Tint" Grid.Row="0" Text="{Binding PreviousTint}" />
+            <Entry Placeholder="Hair Condition" Grid.Row="1" Text="{Binding HairCondition}" />
+            <Entry Placeholder="Natural Color" Grid.Row="2" Text="{Binding NaturalColor}" />
+            <Entry Placeholder="Percent Grey" Grid.Row="3" Text="{Binding PercentGrey}" />
+            <Entry Placeholder="Texture" Grid.Row="4" Text="{Binding Texture}" />
+            <Entry Placeholder="Lightener Mixture" Grid.Row="5" Text="{Binding LightenerMixture}" />
+            <Entry Placeholder="Color Mixture" Grid.Row="6" Text="{Binding ColorMixture}" />
+        </Grid>
+
+        <!-- Button to add the color card -->
+        <Button Text="Add Color Card" 
+                BackgroundColor="Red"
+                TextColor="White"
+                FontAttributes="Bold"
+                CornerRadius="20"
+                Grid.Row="2"
+                Margin="20,20,20,50"
+                Command="{Binding AddColorCardCommand}" />
+    </Grid>
+</ContentPage>

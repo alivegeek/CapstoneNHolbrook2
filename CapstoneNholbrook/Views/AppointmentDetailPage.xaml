@@ -1,0 +1,67 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="CapstoneNHolbrook.Views.AppointmentDetailPage"
+             Title="Appointment Details">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!-- Header Image -->
+        <Image Source="Header.png" Aspect="AspectFill" Grid.Row="0" />
+
+        <!-- Appointment Details Label -->
+        <Label Text="Appointment Details" TextColor="DarkSlateGray" FontAttributes="Bold" 
+               VerticalOptions="Start" HorizontalOptions="Start" Margin="10" Grid.Row="1"/>
+
+        <!-- Appointment Details Grid -->
+        <Grid Grid.Row="2" Margin="20,30,25,0" BackgroundColor="Transparent">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <!-- Appointment Details Entries -->
+            <Label Text="Date:" Grid.Row="0" Grid.Column="0"/>
+            <Label Text="{Binding Date}" Grid.Row="0" Grid.Column="1"/>
+
+            <Label Text="Time:" Grid.Row="1" Grid.Column="0"/>
+            <Label Text="{Binding AppointmentTime}" Grid.Row="1" Grid.Column="1"/>
+
+            <Label Text="Client:" Grid.Row="2" Grid.Column="0"/>
+            <Label Text="{Binding ClientName}" Grid.Row="2" Grid.Column="1"/>
+
+            <Label Text="Notes:" Grid.Row="3" Grid.Column="0"/>
+            <Label Text="{Binding Notes}" Grid.Row="3" Grid.Column="1"/>
+
+            <Label Text="Time Until Appointment:" Grid.Row="4" Grid.Column="0"/>
+            <Label Text="{Binding TimeUntilAppointment}" Grid.Row="4" Grid.Column="1"/>
+
+            <Label Text="Service Type:" Grid.Row="5" Grid.Column="0"/>
+            <Label Text="{Binding ServiceType}" Grid.Row="5" Grid.Column="1"/>
+
+            <!-- Cancellation Label -->
+            <Label x:Name="CancelledLabel" Text="Cancelled" FontSize="40" FontAttributes="Bold"
+                   TextColor="DarkGray" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"
+                   Rotation="-45" TextDecorations="Underline" Opacity="0.4" TranslationY="100"
+                   IsVisible="{Binding IsAppointmentCancelled}" Grid.Row="2" Grid.RowSpan="6"/>
+        </Grid>
+
+        <!-- Buttons -->
+        <StackLayout Grid.Row="3" Orientation="Horizontal" HorizontalOptions="CenterAndExpand" Spacing="10">
+            <Button Text="Edit Appointment" Command="{Binding EditAppointmentCommand}" />
+            <Button Text="Cancel Appointment" Command="{Binding CancelAppointmentCommand}" 
+                    BackgroundColor="Gray" TextColor="White" CornerRadius="10" 
+                    WidthRequest="100" HeightRequest="50"/>
+        </StackLayout>
+    </Grid>
+</ContentPage>

@@ -1,0 +1,142 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TabbedPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local1="clr-namespace:CapstoneNHolbrook.ViewModels"
+             x:Class="CapstoneNHolbrook.Views.MainPage">
+
+    <TabbedPage.Children>
+
+        <!-- Book Tab -->
+        <ContentPage Title="Book">
+            <Grid Padding="10">
+                <!-- Background Image -->
+                <Image Source="bg.png" Aspect="AspectFill" 
+                       HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"/>
+                <!-- Content Grid -->
+                <Grid BackgroundColor="WhiteSmoke">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <!-- Header Image -->
+                    <Image Grid.Row="0" Source="Header.png" Aspect="AspectFill" />
+                    
+                    <!-- Upcoming Appointments and Buttons -->
+                    <StackLayout Grid.Row="1" Orientation="Horizontal" Spacing="10">
+                        <Label Text="Upcoming Appointments" 
+                               TextColor="DarkGray" 
+                               FontAttributes="Bold"/>
+                        <Button Text="{Binding CurrentSortButtonText}" 
+                                Command="{Binding ToggleSortCommand}" 
+                                HorizontalOptions="EndAndExpand"
+                                BackgroundColor="Blue"/>
+                        <Button Text="Hide Cancelled" 
+                                Clicked="OnHideCancelledClicked"
+                                HorizontalOptions="End"
+                                BackgroundColor="Red"/>
+                    </StackLayout>
+
+                    <!-- CollectionView for Appointments -->
+                    <CollectionView Grid.Row="2" 
+                                    ItemsSource="{Binding Appointments}"
+                                    SelectionMode="None">
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate>
+                                <Grid Padding="10">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                    </Grid.RowDefinitions>
+                                    <Label Text="{Binding AppointmentTime}" Grid.Row="0" />
+                                    <Label Text="{Binding ClientName}" Grid.Row="1" />
+                                    <Label Text="{Binding TimeUntilAppointment}" Grid.Row="2" />
+                                </Grid>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+
+                    <!-- Add Appointment Button -->
+                    <Button Text="+" 
+                            Grid.Row="2"
+                            HorizontalOptions="End"
+                            VerticalOptions="End"
+                            BackgroundColor="Gray"
+                            TextColor="White"
+                            WidthRequest="50" 
+                            HeightRequest="50"
+                            CornerRadius="25"
+                            FontSize="Medium"
+                            Clicked="OnAddAppointmentClicked"/>
+                </Grid>
+            </Grid>
+        </ContentPage>
+
+        <!-- Clients Tab -->
+        <ContentPage Title="Clients">
+            <Grid>
+                <!-- Background Image -->
+                <Image Source="bg.png" Aspect="AspectFill" 
+                       HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"/>
+                <!-- Content Layout -->
+                <VerticalStackLayout BackgroundColor="WhiteSmoke">
+                    <Image Source="Header.png" Aspect="AspectFill" HeightRequest="150"/>
+                    <Label Text="Clients" TextColor="Gray" FontAttributes="Bold" VerticalOptions="Start" HorizontalOptions="Start" Margin="10"/>
+                    <SearchBar Placeholder="Search Clients" TextChanged="OnSearchTextChanged"/>
+                    <ListView x:Name="ClientsListView" ItemsSource="{Binding ClientMetricsCollection}" 
+                              SelectedItem="{Binding SelectedClient}" 
+                              RowHeight="100"
+                              IsPullToRefreshEnabled="True"
+                              IsRefreshing="{Binding IsRefreshing}"
+                              RefreshCommand="{Binding RefreshClientsCommand}"
+                              ItemSelected="OnClientItemSelected">
+                        <!-- ... Item template ... -->
+                    </ListView>
+                    <!-- Add Client Button -->
+                    <Button Text="+" 
+                            BackgroundColor="Gray"
+                            TextColor="White"
+                            WidthRequest="50" 
+                            HeightRequest="50"
+                            CornerRadius="25" 
+                            FontSize="Large"
+                            Padding="1,0,1,12"
+                            HorizontalOptions="End"
+                            VerticalOptions="End"
+                            Margin="0,0,20,20"
+                            Clicked="OnAddClientClicked"/>
+                </VerticalStackLayout>
+            </Grid>
+        </ContentPage>
+
+        <!-- Reports Tab -->
+        <ContentPage Title="Reports">
+            <Grid>
+                <!-- Background Image -->
+                <Image Source="bg.png" Aspect="AspectFill" 
+                       HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"/>
+                <!-- Content Layout -->
+                <VerticalStackLayout BackgroundColor="WhiteSmoke">
+                    <Image Source="Header.png" Aspect="AspectFill" HeightRequest="150"/>
+                    <Label Text="Report Metrics" 
+                           TextColor="DarkGray" 
+                           FontAttributes="Bold" 
+                           VerticalOptions="Start" 
+                           HorizontalOptions="Start" 
+                           Margin="10"/>
+                    <ListView ItemsSource="{Binding ReportItems}"
+                              RowHeight="80"
+                              IsPullToRefreshEnabled="True"
+                              IsRefreshing="{Binding IsRefreshing}"
+                              RefreshCommand="{Binding UpdateReportsCommand}">
+                        <!-- ... Item template ... -->
+                    </ListView>
+                </VerticalStackLayout>
+            </Grid>
+        </ContentPage>
+
+    </TabbedPage.Children>
+
+</TabbedPage>

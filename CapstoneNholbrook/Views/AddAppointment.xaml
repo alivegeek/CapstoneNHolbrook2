@@ -1,0 +1,60 @@
+﻿<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="CapstoneNHolbrook.Views.AddAppointment"
+             Title="Add Appointment">
+
+    <VerticalStackLayout>
+        <!-- Header Image -->
+        <Image Source="Header.png"
+               Aspect="AspectFit"
+               VerticalOptions="Start"/>
+
+        <!-- Input boxes for date and time -->
+        <VerticalStackLayout Margin="20">
+            <Label Text="Select Date" Margin="0,0,0,5" />
+            <DatePicker x:Name="AppointmentDatePicker" 
+                        Date="{Binding AppointmentDate}" 
+                        Margin="0,0,0,10"/>
+
+            <HorizontalStackLayout Margin="0,0,0,10">
+                <Label Text="Start Time" Margin="0,0,5,0" />
+                <TimePicker x:Name="AppointmentStartTimePicker" 
+                            Time="{Binding StartTime}" 
+                            Margin="0,0,10,0"/>
+                <Label Text="End Time" Margin="0,0,5,0" />
+                <TimePicker x:Name="AppointmentEndTimePicker" 
+                            Time="{Binding EndTime}" />
+            </HorizontalStackLayout>
+
+            <Entry Placeholder="Type of Service" 
+                   Text="{Binding TypeOfService, Mode=TwoWay}" />
+        </VerticalStackLayout>
+
+        <!-- Client list -->
+        <CollectionView x:Name="ClientListView"
+                        ItemsSource="{Binding Clients}"
+                        SelectionMode="Single"
+                        SelectedItem="{Binding SelectedClient, Mode=TwoWay}">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Label Text="{Binding FullName}" />
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+        <!-- Search box -->
+        <SearchBar x:Name="ClientSearchBar" 
+                   Placeholder="Search for a client..."
+                   TextChanged="OnClientSearchTextChanged"
+                   BackgroundColor="white"/>
+
+        <!-- Button to add the appointment -->
+        <Button Text="Add Appointment" 
+                Command="{Binding AddAppointmentCommand}"
+                BackgroundColor="Red"
+                TextColor="White"
+                FontAttributes="Bold"
+                CornerRadius="20"
+                Margin="20,20,20,50"/>
+    </VerticalStackLayout>
+</ContentPage>

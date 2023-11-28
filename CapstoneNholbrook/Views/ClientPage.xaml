@@ -1,0 +1,58 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="CapstoneNHolbrook.Views.ClientPage">
+    <ContentPage.Content>
+        <VerticalStackLayout Spacing="0">
+            <!-- Header Image -->
+            <Image Source="Header.png" Aspect="AspectFill" HeightRequest="150"/>
+
+            <!-- Client Details Section -->
+            <Grid BackgroundColor="White" Padding="10">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <!-- Client Details -->
+                <Label Text="Client Details" TextColor="DarkSlateGray" FontAttributes="Bold" Grid.Row="0" />
+                
+                <!-- Client Information Grid -->
+                <Grid Grid.Row="1" Margin="20,10,20,10">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+
+                    <Label Text="Name:" Grid.Row="0" Grid.Column="0"/>
+                    <Label Text="{Binding Name}" Grid.Row="0" Grid.Column="1"/>
+
+                    <Label Text="Phone:" Grid.Row="1" Grid.Column="0"/>
+                    <Label Text="{Binding PhoneNumber}" Grid.Row="1" Grid.Column="1"/>
+
+                    <Label Text="Email:" Grid.Row="2" Grid.Column="0"/>
+                    <Label Text="{Binding Email}" Grid.Row="2" Grid.Column="1"/>
+
+                    <Label Text="Can Text:" Grid.Row="3" Grid.Column="0"/>
+                    <Label Text="{Binding CanText}" Grid.Row="3" Grid.Column="1"/>
+
+                    <Label Text="Is Active:" Grid.Row="4" Grid.Column="0"/>
+                    <Label Text="{Binding IsActive}" Grid.Row="4" Grid.Column="1"/>
+                </Grid>
+            </Grid>
+
+            <!-- Buttons -->
+            <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand" Spacing="10" Margin="10">
+                <Button Text="Edit Client" Command="{Binding EditClientCommand}" BackgroundColor="Gray" TextColor="White" CornerRadius="10" WidthRequest="100" HeightRequest="50"/>
+                <Button Text="New Appointment" Command="{Binding NewAppointmentCommand}" BackgroundColor="Gray" TextColor="White" CornerRadius="10" WidthRequest="100" HeightRequest="50"/>
+                <Button Text="View Color Card" Command="{Binding ViewColorCardCommand}" BackgroundColor="Gray" TextColor="White" CornerRadius="10" WidthRequest="100" HeightRequest="50"/>
+            </StackLayout>
+        </VerticalStackLayout>
+    </ContentPage.Content>
+</ContentPage>

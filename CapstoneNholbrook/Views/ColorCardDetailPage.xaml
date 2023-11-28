@@ -1,0 +1,52 @@
+﻿<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="CapstoneNHolbrook.Views.ColorCardDetailPage"
+             Title="Color Card Detail">
+
+    <VerticalStackLayout>
+        <Image Source="Header.png"
+               Aspect="AspectFill"
+               HeightRequest="100" />
+
+        <Label Text="Color Card Details"
+               TextColor="DarkSlateGray"
+               FontAttributes="Bold"
+               Margin="10" />
+
+        <ScrollView>
+            <VerticalStackLayout Margin="20,30,25,0">
+                <Label Text="Previous Tint:" FontAttributes="Bold"/>
+                <Label Text="{Binding PreviousTint}" />
+
+                <Label Text="Hair Condition:" FontAttributes="Bold"/>
+                <Label Text="{Binding HairCondition}" />
+
+                <Label Text="Natural Color:" FontAttributes="Bold"/>
+                <Label Text="{Binding NaturalColor}" />
+
+                <Label Text="Percent Grey:" FontAttributes="Bold"/>
+                <Label Text="{Binding PercentGrey}" />
+
+                <Label Text="Color Mixture:" FontAttributes="Bold"/>
+                <Label Text="{Binding ColorMixture}" />
+
+                <Label Text="Created Date:" FontAttributes="Bold"/>
+                <Label Text="{Binding CreatedDate, StringFormat='{0:MM/dd/yyyy}'}" />
+
+                <!-- Add additional details as needed -->
+            </VerticalStackLayout>
+        </ScrollView>
+
+        <!-- Buttons -->
+        <HorizontalStackLayout HorizontalOptions="CenterAndExpand" Spacing="10">
+            <Button Text="Delete Color Card"
+                    Command="{Binding DeleteColorCardCommand}"
+                    BackgroundColor="Red"
+                    TextColor="White"
+                    CornerRadius="10"
+                    WidthRequest="150"
+                    HeightRequest="50"/>
+        </HorizontalStackLayout>
+    </VerticalStackLayout>
+
+</ContentPage>

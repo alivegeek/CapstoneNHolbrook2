@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="CapstoneNHolbrook.Views.ColorCardsPage">
+    <ContentPage.Content>
+        <VerticalStackLayout Spacing="0">
+            <!-- Header Image -->
+            <Image Source="Header.png" Aspect="AspectFill" HeightRequest="150"/>
+
+            <!-- Title Label -->
+            <Label Text="Color Cards" TextColor="DarkSlateGray" FontAttributes="Bold" HorizontalOptions="Start" Margin="10"/>
+
+            <!-- CollectionView for Color Cards -->
+            <CollectionView ItemsSource="{Binding ColorCards}" 
+                            SelectedItem="{Binding SelectedColorCard}" 
+                            Margin="10">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <VerticalStackLayout Padding="10">
+                            <Label Text="{Binding ColorMixture, StringFormat='Color Mixture: {0}'}" 
+                                   FontSize="Medium" />
+                            <Label Text="{Binding CreatedDate, StringFormat='{0:MM/dd/yyyy}'}"
+                                   FontSize="Small" />
+                        </VerticalStackLayout>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+            <!-- Add Color Card Button -->
+            <Button Text="Add Color Card" Command="{Binding AddColorCardCommand}" BackgroundColor="Gray" TextColor="White" CornerRadius="10" Margin="10" HeightRequest="50"/>
+        </VerticalStackLayout>
+    </ContentPage.Content>
+</ContentPage>
